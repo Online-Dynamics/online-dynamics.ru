@@ -12,9 +12,10 @@
       <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <!-- Additional CSS Files -->
       <link rel="stylesheet" href="assets/css/fontawesome.css">
-      <link rel="stylesheet" href="assets/css/main.css">
       <link rel="stylesheet" href="assets/css/animated.css">
       <link rel="stylesheet" href="assets/css/owl.css">
+      <link rel="stylesheet" href="assets/css/modal.css">
+      <link rel="stylesheet" href="assets/css/main.css">
    </head>
    <body>
       <!-- ***** Preloader Start ***** -->
@@ -36,7 +37,7 @@
                <div class="col-12">
                   <nav class="main-nav">
                      <!-- ***** Logo Start ***** -->
-                     <a href="index.html" class="logo">
+                     <a href="/" class="logo">
                         <h4>Online <span>Dynamics</span></h4>
                      </a>
                      <!-- ***** Logo End ***** -->
@@ -431,26 +432,22 @@
             </div>
          </div>
       </footer>
-<!-- Success/Error Modal -->
-<div class="modal fade" id="responseModal" tabindex="-1" role="dialog" aria-labelledby="responseModalLabel"
-   aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="responseModalLabel">Уведомление</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body" id="modalMessage">
-            <!-- Message will be inserted here by JavaScript -->
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="closeModalBtn">Закрыть</button>
-         </div>
+<!-- Custom Modal -->
+<div class="modal-wrapper" id="responseModal">
+   <div class="custom-modal wow fadeIn" data-wow-duration="0.5s" data-wow-delay="0.25s">
+      <div class="modal-header">
+         <h4>Online <span>Dynamics</span></h4>
+         <button class="close-modal" id="closeModalBtn"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body" id="modalMessage">
+         <!-- Message will be inserted here by JavaScript -->
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="main-button" id="closeModalBtnBottom">Закрыть</button>
       </div>
    </div>
 </div>
+
 
 
       <script src="vendor/jquery/jquery.min.js"></script>

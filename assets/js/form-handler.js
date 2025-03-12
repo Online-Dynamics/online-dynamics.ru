@@ -1,16 +1,42 @@
-// Wait for document to be ready
+// Update the modal handling part of your existing JavaScript
 $(document).ready(function () {
-    // Ensure modal can be closed with the close button
-    $('#closeModalBtn').on('click', function () {
-        $('#responseModal').modal('hide');
+    // Show modal function
+    function showModal(message) {
+        $('#modalMessage').html(message);
+        $('#responseModal').addClass('show animated');
+        $('body').css('overflow', 'hidden'); // Prevent scrolling
+    }
+
+    // Hide modal function
+    function hideModal() {
+        $('#responseModal').removeClass('show');
+        setTimeout(function () {
+            $('#responseModal').removeClass('animated');
+            $('body').css('overflow', '');
+        }, 300);
+    }
+
+    // Close modal buttons
+    $('#closeModalBtn, #closeModalBtnBottom').on('click', function () {
+        hideModal();
     });
 
-    // Also ensure the X in the corner works
-    $('.modal .close').on('click', function () {
-        $('#responseModal').modal('hide');
+    // Close on click outside modal
+    $(document).on('click', function (e) {
+        if ($(e.target).is('#responseModal')) {
+            hideModal();
+        }
     });
 
-    // Handle the quick contact form submission (the form with phone number)
+    // Close on ESC key
+    $(document).keyup(function (e) {
+        if (e.key === "Escape") {
+            hideModal();
+        }
+    });
+
+    // Update AJAX success handlers to use showModal instead of $('#responseModal').modal('show')
+    // For the quick contact form
     $('#search').submit(function (e) {
         e.preventDefault();
 
@@ -33,8 +59,7 @@ $(document).ready(function () {
                 $('#search button[type="submit"]').prop('disabled', false);
 
                 // Show response in modal
-                $('#modalMessage').html(response.message);
-                $('#responseModal').modal('show');
+                showModal(response.message);
 
                 // If success, reset the form
                 if (response.success) {
@@ -42,10 +67,6 @@ $(document).ready(function () {
                 }
             },
             error: function (xhr, status, error) {
-                // Enhanced error logging
-                console.error("AJAX Error:", status, error);
-                console.log("Response:", xhr.responseText);
-
                 // Reset button
                 $('#search button[type="submit"]').text('Отправить');
                 $('#search button[type="submit"]').prop('disabled', false);
@@ -57,13 +78,12 @@ $(document).ready(function () {
                         (xhr.responseText.length > 100 ? '...' : '');
                 }
 
-                $('#modalMessage').html(errorMsg);
-                $('#responseModal').modal('show');
+                showModal(errorMsg);
             }
         });
     });
 
-    // Handle the main contact form submission
+    // For the main contact form
     $('#contact').submit(function (e) {
         e.preventDefault();
 
@@ -86,8 +106,7 @@ $(document).ready(function () {
                 $('#form-submit').prop('disabled', false);
 
                 // Show response in modal
-                $('#modalMessage').html(response.message);
-                $('#responseModal').modal('show');
+                showModal(response.message);
 
                 // If success, reset the form
                 if (response.success) {
@@ -95,10 +114,6 @@ $(document).ready(function () {
                 }
             },
             error: function (xhr, status, error) {
-                // Enhanced error logging
-                console.error("AJAX Error:", status, error);
-                console.log("Response:", xhr.responseText);
-
                 // Reset button
                 $('#form-submit').text('Отправить');
                 $('#form-submit').prop('disabled', false);
@@ -110,22 +125,8 @@ $(document).ready(function () {
                         (xhr.responseText.length > 100 ? '...' : '');
                 }
 
-                $('#modalMessage').html(errorMsg);
-                $('#responseModal').modal('show');
+                showModal(errorMsg);
             }
         });
-    });
-
-    // Close modal when clicking outside of it or pressing escape
-    $(document).on('click', function (e) {
-        if ($(e.target).is('#responseModal')) {
-            $('#responseModal').modal('hide');
-        }
-    });
-
-    $(document).keyup(function (e) {
-        if (e.key === "Escape") {
-            $('#responseModal').modal('hide');
-        }
     });
 });
