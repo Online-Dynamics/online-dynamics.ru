@@ -99,13 +99,16 @@
   });
 
   function onScroll(event) {
-    var scrollPos = $(document).scrollTop() + 100;
+    // Динамически получаем высоту шапки
+    var headerHeight = $('header').outerHeight();
+    var scrollPos = $(document).scrollTop() + headerHeight;
+
     $('.nav a').each(function () {
       var currLink = $(this);
       var href = currLink.attr("href");
 
       // Проверяем, является ли href ссылкой на id элемента на той же странице
-      if (href.charAt(0) === '#' && $(href).length > 0) {
+      if (href && href.charAt(0) === '#' && $(href).length > 0) {
         var refElement = $(href);
         if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
           $('.nav ul li a').removeClass("active");
@@ -120,9 +123,7 @@
 
   // Page loading animation
   $(window).on('load', function () {
-
     $('#js-preloader').addClass('loaded');
-
   });
 
   // Window Resize Mobile Menu Fix
@@ -135,7 +136,5 @@
       }
     });
   }
-
-
 
 })(window.jQuery);

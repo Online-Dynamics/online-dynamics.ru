@@ -195,12 +195,13 @@ ul {
 
 p {
   font-size: 15px;
-  line-height: 25px;
+  line-height: 22px;
   color: #2a2a2a;
 }
 
 img {
   width: 100%;
+  /* height: 306px; */
   overflow: hidden;
 }
 
@@ -542,7 +543,7 @@ header
   height: 40px;
   text-indent: -9999em;
   z-index: 99;
-  right: 40px;
+  right: 20px;
   display: none;
 }
 
@@ -1243,14 +1244,14 @@ Portfolio
   z-index: 3;
   background-color: #fff;
   text-align: center;
-  padding: 50px;
+  /* padding: 50px; */
   border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.5s;
 }
 
 .our-portfolio .showed-content img {
-  max-width: 100px;
+  /* max-width: 100px; */
 }
 
 .article-content .our-portfolio.section h2 {
@@ -1648,7 +1649,7 @@ responsive
 
   .contact-us {
     margin-top: 60px;
-    padding: 120px 0px;
+    padding: 150px 0px;
   }
 
   .contact-us .section-heading {
@@ -1921,13 +1922,13 @@ responsive
 
 .reply-button {
   display: inline-block;
-  color: #e7f8ff;
+  color: #e3e3e3;
   font-size: 14px;
   font-weight: 500;
 }
 
 .reply-button:hover {
-  color: #e3e3e3;
+  color: #c7c7c7;
 }
 
 .main-red-button-hover {
